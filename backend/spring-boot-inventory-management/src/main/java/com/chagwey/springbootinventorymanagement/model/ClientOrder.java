@@ -31,6 +31,7 @@ public class ClientOrder extends AbstractEntity {
     @JsonIgnoreProperties({"clientOrders"})
     private Client client;
 
+    @JsonIgnoreProperties({"clientOrder"})
     @OneToMany(mappedBy = "clientOrder")
     private List<ClientOrderItem> clientOrderItems;
 

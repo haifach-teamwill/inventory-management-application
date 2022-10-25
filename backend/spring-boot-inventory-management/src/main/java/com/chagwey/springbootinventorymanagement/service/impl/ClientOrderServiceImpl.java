@@ -59,13 +59,15 @@ public class ClientOrderServiceImpl implements ClientOrderService {
     @Override
     public ClientOrder save(ClientOrder clientOrder) {
 
+//        validate the client order
+//        verify order client is not null (client attribute exists inside client order object)
+//        else will throw nullPointerException null.getId
         List<String> errors = ClientOrderValidator.validate(clientOrder);
         if (!errors.isEmpty()) {
             log.error("Client order is not valid");
-//            we already verified that the client is not null, (client field exists inside client order object)
-//            else will throw nullPointerException null.getId
             throw new InvalidEntityException("Order client is not valid", ErrorCode.CLIENT_ORDER_NOT_VALID, errors);
         }
+//        check if the client exists in our database
 //        client id can be null
         Optional<Client> client = clientRepository.findById(clientOrder.getClient().getId());
         if (client.isEmpty()) {
@@ -78,29 +80,24 @@ public class ClientOrderServiceImpl implements ClientOrderService {
 //        if we have client order items to save
         if (clientOrder.getClientOrderItems() != null) {
 
-
             clientOrder.getClientOrderItems().forEach(
                     clientOrderItem -> {
                         if (clientOrderItem.getArticle() != null) {
                             Optional<Article> article = articleRepository.findById(clientOrderItem.getArticle().getId());
                             if (article.isEmpty()) {
                                 articleErrors.add("No article with " + article.get().getId() + " was found.");
-
                             }
                         } else {
                             articleErrors.add("Cannot save the order with a null article");
-
                         }
                     }
             );
         }
         if (!articleErrors.isEmpty()) {
-            log.info("articlesErrors contain errors");
             throw new EntityNotFoundException("No article was found.", ErrorCode.ARTICLE_NOT_FOUND, articleErrors);
         }
 
         ClientOrder newClientOrder = clientOrderRepository.save(clientOrder);
-
 
         if (clientOrder.getClientOrderItems() != null) {
             clientOrder.getClientOrderItems().forEach(

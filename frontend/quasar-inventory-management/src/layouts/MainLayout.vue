@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="lHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -10,16 +10,12 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
-        <q-toolbar-title> Inventory management application </q-toolbar-title>
-
-        <!--    <div>Quasar v{{ $q.version }}</div> -->
       </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <!--<q-item-label header> Essential Links </q-item-label>-->
+   
 
         <EssentialLink
           v-for="link in essentialLinks"
@@ -42,7 +38,7 @@ import EssentialLink from "components/EssentialLink.vue";
 const linksList = [
   {
     title: "Articles",
-    icon: "list",
+    icon: "article",
     link: "",
   },
   {

@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -44,6 +45,7 @@ public class Article extends AbstractEntity {
 	//*
 	@JsonIgnore
 	@OneToMany(mappedBy = "article")
+	@JsonIgnoreProperties({"article"})
 	List<ClientOrderItem> clientOrderItems;
 	//*
 	@JsonIgnore
