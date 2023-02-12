@@ -1,6 +1,9 @@
 package com.chagwey.springbootinventorymanagement.service.auth;
 
+import com.chagwey.springbootinventorymanagement.exception.EntityNotFoundException;
+import com.chagwey.springbootinventorymanagement.exception.ErrorCode;
 import com.chagwey.springbootinventorymanagement.model.auth.ExtendedUser;
+import com.chagwey.springbootinventorymanagement.repository.UserRepository;
 import com.chagwey.springbootinventorymanagement.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +22,22 @@ import java.util.List;
 @Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         log.info(email);
-        User user = userService.findByEmail(email);
+        User user = userRepository.findByEmail(email).orElseThrow(()->
+                new EntityNotFoundException("No user with email " + email + " was found.", ErrorCode.USER_NOT_FOUND));
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        log.info("roles:" + user.getRoles());
         user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
         return new ExtendedUser(user.getEmail(), user.getPassword(), authorities, user.getCompany().getId());
 
 
 //        org.springframework.security.core.userdetails.User is a class that implenents UserDetails class
+//        we can create another class that implements UserDetails and call it UserPrincipal or ExtendedUser
 
     }
 

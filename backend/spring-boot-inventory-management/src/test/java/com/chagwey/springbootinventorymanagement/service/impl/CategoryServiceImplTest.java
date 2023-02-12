@@ -1,4 +1,4 @@
-package com.chagwey.springbootinventorymanagement.repository.service.impl;
+package com.chagwey.springbootinventorymanagement.service.impl;
 
 import com.chagwey.springbootinventorymanagement.exception.EntityNotFoundException;
 import com.chagwey.springbootinventorymanagement.exception.ErrorCode;

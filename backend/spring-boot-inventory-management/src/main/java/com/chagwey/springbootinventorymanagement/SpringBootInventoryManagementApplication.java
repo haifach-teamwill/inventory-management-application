@@ -6,10 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
-//@EnableWebMvc
-//@EnableSwagger2
+@EnableWebMvc
 @SpringBootApplication
 public class SpringBootInventoryManagementApplication {
 
@@ -21,4 +22,6 @@ public class SpringBootInventoryManagementApplication {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
 }

@@ -36,16 +36,16 @@ public class JwtUtil {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(SECRET_KEY.getBytes()).parseClaimsJws(token).getBody();
     }
 
     private Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(ExtendedUser userDetails) {
+    public String generateToken(ExtendedUser extendedUser) {
         Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, userDetails);
+        return createToken(claims, extendedUser);
     }
 
     private String createToken(Map<String, Object> claims, ExtendedUser extendedUser) {

@@ -29,10 +29,10 @@ public class ApplicationRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 
         final String authHeader = request.getHeader("Authorization");
-        String userEmail = null;
-        String jwt = null;
-        String companyId = null;
 
+        String jwt = null;
+        String userEmail = null;
+        String companyId = null;
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             jwt = authHeader.substring(7);

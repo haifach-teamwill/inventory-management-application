@@ -2,11 +2,12 @@ package com.chagwey.springbootinventorymanagement.utils.constants;
 
 public class SecurityConstant {
 
-    public static final String[] PUBLIC_URLS = {"/**/authenticate"
-            , "/**/users/**"
-            , "/**/articles/**"
-            , "/**/categories/**"
-            , "/**/clientsOrders/**"
+    public static final String[] PUBLIC_URLS = {
+            "/**/authenticate"
+//            , "/**/users/**"
+//            , "/**/articles/**"
+//            , "/**/categories/**"
+//            , "/**/clientsOrders/**"
             , "/swagger-resources"
             , "/swagger-resources/**"
             , "/configuration/ui"

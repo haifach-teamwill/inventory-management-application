@@ -17,7 +17,6 @@ import lombok.*;
 public class Role extends AbstractEntity {
 
     private String name;
-
     @ManyToOne
     @JsonIgnoreProperties({"user"})
     @JoinColumn(name = "user_id")

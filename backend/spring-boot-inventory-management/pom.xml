@@ -62,13 +62,17 @@
             <version>3.0.6</version>
         </dependency>
 
-        <!-- Swagger annotations -->
-        <!--        <dependency>-->
-        <!--            <groupId>io.springfox</groupId>-->
-        <!--            <artifactId>springfox-boot-starter</artifactId>-->
-        <!--            <version>3.0.0</version>-->
-        <!--        </dependency>-->
-
+<!--         Swagger annotations-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -101,46 +105,7 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>com.github.kongchen</groupId>
-                <artifactId>swagger-maven-plugin</artifactId>
-                <version>3.1.8</version>
-                <configuration>
-                    <apiSources>
-                        <apiSource>
-                            <springmvc>true</springmvc>
-                            <locations>
-                                <location>com.chagwey.springbootinventorymanagement.controller</location>
-                            </locations>
-                            <basePath>http://localhost:8070</basePath>
-                            <info>
-                                <title>Swagger API documentation for inventoru management application</title>
-                                <version>${project.version}</version>
-                                <description>Swagger API documentation for inventory management application
-                                </description>
-                                <contact>
-                                    <email>haifachagwey@gmail.com</email>
-                                    <name>Haifa Chagwey</name>
-                                </contact>
-                            </info>
 
-                            <outputPath>${project.build.directory}</outputPath>
-                            <outputFormats>json</outputFormats>
-                            <swaggerApiReader>com.github.kongchen.swagger.docgen.reader.SpringMvcApiReader
-                            </swaggerApiReader>
-                            <swaggerDirectory>${project.build.directory}</swaggerDirectory>
-                        </apiSource>
-                    </apiSources>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
